@@ -1,0 +1,9 @@
+{
+  "name": "ocean-freight-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ocean-freight-e2e/src",
+  "targets": {},
+  "implicitDependencies": ["ocean-freight"],
+  "tags": []
+}

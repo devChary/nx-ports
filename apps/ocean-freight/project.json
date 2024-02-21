@@ -1,0 +1,8 @@
+{
+  "name": "ocean-freight",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ocean-freight/src",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}
