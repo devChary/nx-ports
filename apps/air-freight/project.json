@@ -1,0 +1,8 @@
+{
+  "name": "air-freight",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/air-freight/src",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}

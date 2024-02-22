@@ -5,7 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/ocean-freight',
+  cacheDir: '../../node_modules/.vite/apps/air-freight',
 
   server: {
     port: 4200,
@@ -25,7 +25,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: './build/ocean-freight',
+    outDir: '../../dist/apps/air-freight',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -42,7 +42,7 @@ export default defineConfig({
 
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/ocean-freight',
+      reportsDirectory: '../../coverage/apps/air-freight',
       provider: 'v8',
     },
   },
