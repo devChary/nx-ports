@@ -90,11 +90,8 @@ Just run `nx build demoapp` to build the application. The build artifacts will b
 
 ## Set up CI!
 
-Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
-
-- [Set up remote caching](https://nx.dev/features/share-your-cache)
-- [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
-- [Learn more how to setup CI](https://nx.dev/recipes/ci)
+Nx comes with local caching already built-in (check `nx.json`).
+For further information check .github/workflows folder
 
 ## Explore the Project Graph
 
@@ -105,11 +102,15 @@ It will show tasks that you can run with Nx.
 
 ## Commit Convention
 
-feat: Commits, that adds or remove a new feature
-fix: Commits, that fixes a bug
-refactor: Commits, that rewrite/restructure your code, however does not change any API behaviour
-perf: Commits are special refactor commits, that improve performance
-style: Commits, that do not affect the meaning (white-space, formatting, missing semi-colons, etc)
-test: Commits, that add missing tests or correcting existing tests
-docs: Commits, that affect documentation only
-build: Commits, that affect build components like build tool, ci pipeline, dependencies, project version, ...
+# Types
+
+|    Type    | Description                                                                                       |
+| :--------: | ------------------------------------------------------------------------------------------------- |
+|   `feat`   | for new feature implementing commit                                                               |
+|   `fix`    | Commits, that fixes a bug                                                                         |
+| `refactor` | rewrite/restructure your code                                                                     |
+|   `perf`   | for performance issue fix commit                                                                  |
+|  `style`   | that do not affect the meaning (white-space, formatting, missing semi-colons, etc)                |
+|   `test`   | Commits, that add missing tests or correcting existing tests                                      |
+|   `docs`   | Commits, that affect documentation only                                                           |
+|  `build`   | Commits, that affect build components like build tool, ci pipeline, dependencies, project version |
