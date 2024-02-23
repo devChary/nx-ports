@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-/* components */
-import { LineChart, PortSelection } from '@nx-ports/shared-ui';
-
-/* utils */
+/* components | hooks | utils */
 import {
+  LineChart,
+  PortSelection,
+  Loader,
   useAirPortCodes,
   useMarketRates,
   marketPositions,
@@ -13,6 +13,9 @@ import {
 
 /* Styles */
 import { Wrapper, ChartData } from './styled';
+
+/* consts */
+import { APP_META } from '../../consts';
 
 interface MarketPostionProps {
   value: string;
@@ -33,7 +36,7 @@ interface MarketRate {
 
 const TimeSeriesChart: React.FC = () => {
   const { airportCodes } = useAirPortCodes();
-  const { marketRates, fetchMarketRates } = useMarketRates();
+  const { isLoading, marketRates, fetchMarketRates } = useMarketRates();
 
   const [originPort, setOriginPort] = useState<Port | null>(null);
   const [destinationPort, setDestinationPort] = useState<Port | null>(null);
@@ -49,7 +52,7 @@ const TimeSeriesChart: React.FC = () => {
   useEffect(() => {
     if (portsSelected) {
       fetchMarketRates({
-        freightMode: 'air',
+        freightMode: APP_META.freightMode,
         origin: originPort.code,
         destination: destinationPort.code,
       });
@@ -66,15 +69,19 @@ const TimeSeriesChart: React.FC = () => {
           destinationPort={destinationPort}
           setDestinationPort={setDestinationPort}
         />
-        <LineChart
-          themeColor="#771DFF"
-          marketRates={marketRates}
-          noMarketRates={noMarketRates}
-          portsSelected={portsSelected}
-          marketPostions={checkedCheckboxes}
-        />
+        {isLoading ? (
+          <Loader themeColor={APP_META.themeColor} />
+        ) : (
+          <LineChart
+            themeColor={APP_META.themeColor}
+            marketRates={marketRates}
+            noMarketRates={noMarketRates}
+            portsSelected={portsSelected}
+            marketPostions={checkedCheckboxes}
+          />
+        )}
       </ChartData>
-      {portsSelected && !noMarketRates && (
+      {portsSelected && !noMarketRates && !isLoading && (
         <MarketPosition
           checkedCheckboxes={checkedCheckboxes}
           setCheckedCheckboxes={setCheckedCheckboxes}

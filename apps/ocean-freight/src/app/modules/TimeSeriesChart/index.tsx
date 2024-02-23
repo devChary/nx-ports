@@ -8,6 +8,7 @@ import {
   useMarketRates,
   marketPositions,
   MarketPosition,
+  Loader,
 } from '@nx-ports/shared-ui';
 
 /* Styles */
@@ -68,15 +69,19 @@ const TimeSeriesChart: React.FC = () => {
           destinationPort={destinationPort}
           setDestinationPort={setDestinationPort}
         />
-        <LineChart
-          themeColor={APP_META.themeColor}
-          marketRates={marketRates}
-          noMarketRates={noMarketRates}
-          portsSelected={portsSelected}
-          marketPostions={checkedCheckboxes}
-        />
+        {isLoading ? (
+          <Loader themeColor={APP_META.themeColor} />
+        ) : (
+          <LineChart
+            themeColor={APP_META.themeColor}
+            marketRates={marketRates}
+            noMarketRates={noMarketRates}
+            portsSelected={portsSelected}
+            marketPostions={checkedCheckboxes}
+          />
+        )}
       </ChartData>
-      {portsSelected && !noMarketRates && (
+      {portsSelected && !noMarketRates && !isLoading && (
         <MarketPosition
           checkedCheckboxes={checkedCheckboxes}
           setCheckedCheckboxes={setCheckedCheckboxes}
