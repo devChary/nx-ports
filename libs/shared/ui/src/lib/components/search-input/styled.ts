@@ -63,8 +63,7 @@ export const DropDownOptions = styled.div`
   position: absolute;
   background: #fff;
   padding: 12px 0px 4px;
-  box-shadow: 0px 0px 60px rgba(83, 87, 101, 0.1);
-  border-radius: 0 0 4px 4px;
+  border-bottom: 1px solid black;
   width: 100%;
   max-height: 250px;
   overflow: auto;

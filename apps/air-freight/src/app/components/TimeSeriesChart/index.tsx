@@ -4,14 +4,15 @@ import React, { useEffect, useState } from 'react';
 import { LineChart, PortSelection } from '@nx-ports/shared-ui';
 
 /* utils */
-import { useAirPortCodes, useMarketRates } from '@nx-ports/shared-ui';
+import {
+  useAirPortCodes,
+  useMarketRates,
+  marketPositions,
+} from '@nx-ports/shared-ui';
 
 /* Styles */
 import { Wrapper, ChartData } from './styled';
-import MarketPosition, {
-  MarketPostion,
-  marketPositions,
-} from '../MarketPostion';
+import MarketPosition, { MarketPostionProps } from '../MarketPostion';
 
 interface Port {
   name: string;
@@ -32,9 +33,9 @@ const TimeSeriesChart: React.FC = () => {
 
   const [originPort, setOriginPort] = useState<Port | null>(null);
   const [destinationPort, setDestinationPort] = useState<Port | null>(null);
-  const [checkedCheckboxes, setCheckedCheckboxes] = useState<MarketPostion[]>([
-    marketPositions[0],
-  ]);
+  const [checkedCheckboxes, setCheckedCheckboxes] = useState<
+    MarketPostionProps[]
+  >([marketPositions[0]]);
 
   const portsSelected = originPort?.code && destinationPort?.code;
   const noMarketRates = marketRates?.every(
