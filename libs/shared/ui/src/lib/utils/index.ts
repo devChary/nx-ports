@@ -3,9 +3,9 @@ const BASE_URL = `https://685rp9jkj1.execute-api.eu-west-1.amazonaws.com/prod/`;
 
 const defaultOptions: RequestInit = {
   method: 'GET',
-  mode: 'cors',
+  //   mode: 'cors',
   headers: {
-    'X-Api-Key': 'vIF58u6c7r5xSX7NQunU6LjLu6jgem25XCFcaWdb',
+    'x-api-key': 'vIF58u6c7r5xSX7NQunU6LjLu6jgem25XCFcaWdb',
     'Content-Type': 'application/json',
   },
 };
@@ -40,10 +40,10 @@ async function customFetch({
   const searchParamsString = searchParams.toString();
 
   const response = await fetch(
-    `${BASE_URL}/${query}?${searchParamsString}`,
+    `${BASE_URL}/${query}${searchParamsString ? `$${searchParamsString}` : ''}`,
     options
   );
   return await response.json();
 }
 
-export { customFetch };
+export { customFetch, BASE_URL };

@@ -4,6 +4,7 @@ export const PortSelectionWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   padding: 0 24px;
   width: 100%;
   max-width: 672px;

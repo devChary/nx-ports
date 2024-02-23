@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import NxWelcome from './nx-welcome';
-import { EmptyState } from '@nx-ports/shared-ui';
+import TimeSeriesChart from './components/TimeSeriesChart';
 
 const StyledApp = styled.div`
   // Your style here
@@ -10,8 +9,7 @@ const StyledApp = styled.div`
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="air-freight" />
-      <EmptyState title="Random Title" subTitle="Some subtitle" />
+      <TimeSeriesChart />
     </StyledApp>
   );
 }

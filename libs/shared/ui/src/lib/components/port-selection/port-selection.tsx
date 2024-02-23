@@ -17,21 +17,29 @@ interface Port {
 }
 
 interface DestinationsProps {
+  data: Port[];
+  destinationPort: Port | null;
+  originPort: Port | null;
   setOriginPort: (port: Port) => void;
   setDestinationPort: (port: Port) => void;
 }
 
 const Destinations: React.FC<DestinationsProps> = ({
+  data = [],
+  originPort,
   setOriginPort,
+  destinationPort,
   setDestinationPort,
 }) => {
-  const portsData = [{ name: '', code: '' }];
-  // const {
-  //   data: portsData,
-  // } = useQuery({ query: 'ports' });
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
 
-  const [origin, setOrigin] = useState<string>('');
-  const [destination, setDestination] = useState<string>('');
+  const originPortData = destinationPort
+    ? data?.filter((d) => d.code !== destinationPort?.code)
+    : data;
+  const destinationPortData = originPort
+    ? data?.filter((d) => d.code !== originPort?.code)
+    : data;
 
   return (
     <PortSelectionWrapper>
@@ -40,7 +48,7 @@ const Destinations: React.FC<DestinationsProps> = ({
         name="origin"
         query={origin}
         placeholder="Enter Origin"
-        data={portsData}
+        data={originPortData}
         handleChange={(event) => setOrigin(event.target.value)}
         handleClick={(port) => {
           setOrigin(`${port.name} (${port.code})`);
@@ -53,7 +61,7 @@ const Destinations: React.FC<DestinationsProps> = ({
         name="destination"
         query={destination}
         placeholder="Enter Destination"
-        data={portsData}
+        data={destinationPortData}
         handleChange={(event) => setDestination(event.target.value)}
         handleClick={(port) => {
           setDestination(`${port.name} (${port.code})`);
