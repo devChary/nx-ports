@@ -41,7 +41,9 @@ Sometimes dependencies can get into an outdated or bad state. As a general fix, 
 Another issue that may arise due to Symlinks
 Use `nvm` - node version manager to install and switch to v18.19.1 version and then re-install dependencies
 
-## How to Install Guide - https://github.com/nvm-sh/nvm
+## How to Install Guide -
+
+https://github.com/nvm-sh/nvm
 
 ## Generate code
 
