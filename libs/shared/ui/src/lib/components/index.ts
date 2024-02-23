@@ -6,3 +6,4 @@ export { default as CheckBox } from './checkbox';
 export { default as MarketPosition } from './market-position/market-position';
 export { default as Header } from './header/header';
 export { default as Loader } from './loader';
+export { default as TimeSeriesChart } from './time-series-chart';
