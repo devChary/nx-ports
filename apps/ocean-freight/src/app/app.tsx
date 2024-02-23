@@ -1,15 +1,20 @@
 import styled from 'styled-components';
+import TimeSeriesChart from './modules/TimeSeriesChart';
 
-import NxWelcome from './nx-welcome';
+import { Header } from '@nx-ports/shared-ui';
 
-const StyledApp = styled.div`
-  // Your style here
-`;
+import { APP_META } from './consts';
+
+const StyledApp = styled.div``;
 
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="ocean-freight" />
+      <Header
+        themeColor={APP_META.themeColor}
+        freightLabel={APP_META.freightLabel}
+      />
+      <TimeSeriesChart />
     </StyledApp>
   );
 }

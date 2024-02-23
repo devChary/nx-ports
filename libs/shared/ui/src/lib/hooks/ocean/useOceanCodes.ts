@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { useState, useEffect, useCallback } from 'react';
 import { getOceanCodes } from '../../api-interface';
 
@@ -6,7 +5,6 @@ export default function useOceanCodes() {
   const [oceanCodes, setOceanCodes] = useState([]);
 
   const fetchOceanCodes = useCallback(async () => {
-    debugger;
     try {
       const response = await getOceanCodes();
       setOceanCodes(response);

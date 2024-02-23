@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
 /* components */
-import { LineChart, PortSelection } from '@nx-ports/shared-ui';
-
-/* utils */
 import {
-  useAirPortCodes,
+  LineChart,
+  PortSelection,
+  useOceanCodes,
   useMarketRates,
   marketPositions,
+  MarketPosition,
 } from '@nx-ports/shared-ui';
 
 /* Styles */
 import { Wrapper, ChartData } from './styled';
-import MarketPosition, { MarketPostionProps } from '../MarketPostion';
+
+/* consts */
+import { APP_META } from '../../consts';
+
+interface MarketPostionProps {
+  value: string;
+  label: string;
+}
 
 interface Port {
   name: string;
@@ -27,9 +34,8 @@ interface MarketRate {
 }
 
 const TimeSeriesChart: React.FC = () => {
-  const { airportCodes } = useAirPortCodes();
-  const { marketRates, fetchMarketRates } = useMarketRates();
-  console.log('🚀 ~ marketRates:', marketRates);
+  const { oceanCodes } = useOceanCodes();
+  const { isLoading, marketRates, fetchMarketRates } = useMarketRates();
 
   const [originPort, setOriginPort] = useState<Port | null>(null);
   const [destinationPort, setDestinationPort] = useState<Port | null>(null);
@@ -37,7 +43,7 @@ const TimeSeriesChart: React.FC = () => {
     MarketPostionProps[]
   >([marketPositions[0]]);
 
-  const portsSelected = originPort?.code && destinationPort?.code;
+  const portsSelected = !!(originPort?.code && destinationPort?.code);
   const noMarketRates = marketRates?.every(
     (d: MarketRate) => !d.high && !d.low && !d.mean
   );
@@ -45,7 +51,7 @@ const TimeSeriesChart: React.FC = () => {
   useEffect(() => {
     if (portsSelected) {
       fetchMarketRates({
-        freightMode: 'air',
+        freightMode: APP_META.freightMode,
         origin: originPort.code,
         destination: destinationPort.code,
       });
@@ -56,13 +62,14 @@ const TimeSeriesChart: React.FC = () => {
     <Wrapper>
       <ChartData>
         <PortSelection
-          data={airportCodes}
+          data={oceanCodes}
           originPort={originPort}
           setOriginPort={setOriginPort}
           destinationPort={destinationPort}
           setDestinationPort={setDestinationPort}
         />
         <LineChart
+          themeColor={APP_META.themeColor}
           marketRates={marketRates}
           noMarketRates={noMarketRates}
           portsSelected={portsSelected}

@@ -1,4 +1,3 @@
-/* eslint-disable no-debugger */
 import { customFetch } from '../utils';
 
 export interface MarketRatesParams {
@@ -12,7 +11,6 @@ export const getMarketRates = ({
   origin,
   destination,
 }: MarketRatesParams) => {
-  debugger;
   return customFetch({
     query: `/${freightMode}/rates?origin=${origin}&destination=${destination}`,
   });

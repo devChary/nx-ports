@@ -41,6 +41,7 @@ interface Props {
   noMarketRates: boolean;
   marketPostions: MarketPosition[];
   portsSelected: boolean;
+  themeColor: string;
 }
 
 const monthNames = [
@@ -59,6 +60,7 @@ const monthNames = [
 ];
 
 const LineChart: React.FC<Props> = ({
+  themeColor,
   marketRates,
   noMarketRates,
   marketPostions,
@@ -85,7 +87,7 @@ const LineChart: React.FC<Props> = ({
       label: `${pos.label}`,
       data: curatedData.map((r: any) => r[pos.value]),
       fill: false,
-      borderColor: '#771DFF',
+      borderColor: themeColor,
     }));
 
     setChartData({
@@ -96,6 +98,12 @@ const LineChart: React.FC<Props> = ({
 
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
+    showScale: true,
+    legend: {
+      display: false,
+    },
+    cutoutPercentage: 80,
     plugins: {
       title: {
         display: true,
@@ -104,17 +112,20 @@ const LineChart: React.FC<Props> = ({
     },
     scales: {
       x: {
+        grid: {
+          drawOnChartArea: false,
+        },
         ticks: {
           stepSize: 1,
           callback: function (val: number, index: number): any {
-            return index % 4 === 0 ? val : '';
+            return index % 4 === 0 ? this.getLabelForValue(val) : '';
           },
         },
       },
       y: {
         ticks: {
           beginAtZero: true,
-          callback: function (val: string | number, index: number) {
+          callback: function (val: number, index: number) {
             return val ? `$${val}` : '';
           },
         },
@@ -146,7 +157,7 @@ const LineChart: React.FC<Props> = ({
         width: '800px',
       }}
     >
-      {chartData && <Line options={options} data={chartData} />}
+      {chartData && <Line data={chartData} options={options} />}
     </div>
   );
 };

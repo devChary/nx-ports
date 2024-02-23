@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { CheckBox, marketPositions } from '@nx-ports/shared-ui';
+import CheckBox from '../checkbox';
+import { marketPositions } from '../../consts';
 
 const CheckBoxWrapper = styled.div`
   display: flex;
