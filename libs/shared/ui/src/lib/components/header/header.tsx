@@ -12,7 +12,7 @@ interface HeaderProps {
 const Wrapper = styled.div<WrapperProps>`
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid ${(props) => props.themeColor};
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   margin-bottom: 40px;
 `;
 

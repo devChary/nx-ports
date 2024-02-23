@@ -5,6 +5,9 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 40px;
+  @media screen and (max-width: 920px) {
+    flex-wrap: wrap-reverse;
+  }
 `;
 
 export const ChartData = styled.div`

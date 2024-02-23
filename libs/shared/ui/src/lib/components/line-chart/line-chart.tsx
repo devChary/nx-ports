@@ -24,6 +24,13 @@ const EmptyWrapper = styled.div`
   padding: 50px 100px;
 `;
 
+const ChartWrapper = styled.div`
+  width: 800px;
+  @media screen and (max-width: 992px) {
+    width: 100%;
+  }
+`;
+
 interface MarketRate {
   day: string;
   high: number;
@@ -151,14 +158,9 @@ const LineChart: React.FC<Props> = ({
   }
 
   return (
-    <div
-      className="chart-wrapper"
-      style={{
-        width: '800px',
-      }}
-    >
+    <ChartWrapper>
       {chartData && <Line data={chartData} options={options} />}
-    </div>
+    </ChartWrapper>
   );
 };
 

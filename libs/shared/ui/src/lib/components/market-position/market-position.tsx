@@ -7,6 +7,9 @@ const CheckBoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media screen and (max-width: 992px) {
+    flex-direction: row;
+  }
 `;
 
 export interface MarketPostionProps {
