@@ -45,6 +45,7 @@ const TimeSeriesChart: React.FC = () => {
   useEffect(() => {
     if (portsSelected) {
       fetchMarketRates({
+        freightMode: 'air',
         origin: originPort.code,
         destination: destinationPort.code,
       });

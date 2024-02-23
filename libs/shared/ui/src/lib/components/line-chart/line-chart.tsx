@@ -1,0 +1,154 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  ArcElement,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import styled from 'styled-components';
+
+import { EmptyState } from '../empty-state/empty-state';
+
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  ArcElement
+);
+
+const EmptyWrapper = styled.div`
+  padding: 50px 100px;
+`;
+
+interface MarketRate {
+  day: string;
+  high: number;
+  low: number;
+  mean: number;
+}
+
+interface MarketPosition {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  marketRates: MarketRate[];
+  noMarketRates: boolean;
+  marketPostions: MarketPosition[];
+  portsSelected: boolean;
+}
+
+const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+  'Aug',
+  'Sept',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
+const LineChart: React.FC<Props> = ({
+  marketRates,
+  noMarketRates,
+  marketPostions,
+  portsSelected,
+}) => {
+  const [chartData, setChartData] = useState<any>(null);
+
+  const curatedData = marketRates.map((d) => ({
+    date: d.day,
+    high: +d.high,
+    low: +d.low,
+    'mid-high': +((d.high || 0 + d.mean || 0) / 2),
+    'mid-low': +((d.low || 0 + d.mean || 0) / 2),
+    average: +d.mean,
+  }));
+
+  const generateChart = () => {
+    const labels = curatedData.map((rate, index) => {
+      const d = new Date(rate.date);
+      return `${d.getDate()} ${monthNames[d.getMonth()]}`;
+    });
+
+    const datasets = marketPostions?.map((pos) => ({
+      label: `${pos.label}`,
+      data: curatedData.map((r: any) => r[pos.value]),
+      fill: false,
+      borderColor: '#771DFF',
+    }));
+
+    setChartData({
+      labels: labels,
+      datasets,
+    });
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart',
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          stepSize: 1,
+          callback: function (val: number, index: number): any {
+            return index % 4 === 0 ? val : '';
+          },
+        },
+      },
+      y: {
+        ticks: {
+          beginAtZero: true,
+          callback: function (val: string | number, index: number) {
+            return val ? `$${val}` : '';
+          },
+        },
+      },
+    },
+  };
+
+  useEffect(() => {
+    if (marketRates?.length > 0 && !noMarketRates && marketPostions) {
+      generateChart();
+    }
+  }, [marketRates, noMarketRates, marketPostions]);
+
+  if (noMarketRates && portsSelected) {
+    return (
+      <EmptyWrapper>
+        <EmptyState
+          title="No data found!"
+          subTitle="No market prices available for the selected ports. Please try again by selecting different ports."
+        />
+      </EmptyWrapper>
+    );
+  }
+
+  return (
+    <div
+      className="chart-wrapper"
+      style={{
+        width: '800px',
+      }}
+    >
+      {chartData && <Line options={options} data={chartData} />}
+    </div>
+  );
+};
+
+export default LineChart;

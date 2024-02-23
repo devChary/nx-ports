@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = `https://685rp9jkj1.execute-api.eu-west-1.amazonaws.com/prod/`;
+const BASE_URL = `https://685rp9jkj1.execute-api.eu-west-1.amazonaws.com/prod`;
 
 const defaultOptions: RequestInit = {
   method: 'GET',

@@ -4,11 +4,17 @@ import { customFetch } from '../utils';
 export interface MarketRatesParams {
   origin: string;
   destination: string;
+  freightMode: string;
 }
 
-export const getMarketRates = ({ origin, destination }: MarketRatesParams) => {
+export const getMarketRates = ({
+  freightMode,
+  origin,
+  destination,
+}: MarketRatesParams) => {
+  debugger;
   return customFetch({
-    query: `air/rates?origin=${origin}&destination=${destination}`,
+    query: `/${freightMode}/rates?origin=${origin}&destination=${destination}`,
   });
 };
 
