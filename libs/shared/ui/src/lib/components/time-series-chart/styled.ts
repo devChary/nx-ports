@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ChartData = styled.div`
-  background-color: var(--grayscale-0);
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,11 +20,11 @@ export const ChartData = styled.div`
 export const HeaderWrapper = styled.div`
   width: 100%;
   padding-left: 48px;
-  border-bottom: 1px solid var(--grayscale-200);
+  border-bottom: 1px solid rgb(0, 0, 0, 0.5);
   h2 {
     text-transform: uppercase;
     display: inline-block;
-    color: var(--grayscale-1000);
+    color: #000;
     font-size: 1.25rem;
     border-bottom: 3px solid var(--primary-color);
   }

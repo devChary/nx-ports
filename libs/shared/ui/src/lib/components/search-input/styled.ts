@@ -2,7 +2,7 @@ import styled, { css, keyframes, StyledComponent } from 'styled-components';
 
 export const commonPlaceholderStyles = css`
   font-size: 1rem;
-  color: var(--grayscale-200);
+  color: rgb(0, 0, 0, 0.5);
 `;
 
 interface InputProps {
@@ -16,17 +16,17 @@ export const InputComponent: StyledComponent<
   any,
   InputProps
 > = styled.input<InputProps>`
-  padding: 16px;
+  padding: 8px;
   margin-bottom: 40px;
   border: none;
   font-size: 1rem;
-  color: var(--grayscale-1000);
-  border-bottom: 2px solid var(--grayscale-200);
+  color: #000;
+  border-bottom: 2px solid lightgray;
   width: ${(props) => props.width || '100%'};
   height: ${(props) => props.height || '50px'};
   &:focus {
     outline: none;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid #000;
   }
   ::placeholder,
   ::-webkit-input-placeholder {
@@ -63,13 +63,12 @@ export const DropDownOptions = styled.div`
   position: absolute;
   background: #fff;
   padding: 12px 0px 4px;
-  border-bottom: 1px solid black;
   width: 100%;
   max-height: 250px;
   overflow: auto;
   animation: ${dropDownAnimation} 200ms ease-in-out;
   animation-fill-mode: forwards;
-  top: 50px;
+  top: 72px;
   z-index: 1;
 `;
 
@@ -77,11 +76,10 @@ export const DropDownOption = styled.div`
   cursor: pointer;
   width: 100%;
   text-align: left;
-  border-bottom: 1px solid #eae9e9;
   padding: 12px 16px;
   font-size: 0.875rem;
   &:hover {
-    color: #00828a;
+    color: #000;
   }
   &:active,
   &:focus {
