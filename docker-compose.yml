@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # Air Freight Application
+  air-freight:
+    extends:
+      file: docker-compose.base.yml
+      service: nx-app-ports
+    command: npm run air-freight:dev:docker
+    ports:
+      - 4201:4200
+
+  # Ocean Freight Application
+  ocean-freight:
+    extends:
+      file: docker-compose.base.yml
+      service: nx-app-ports
+    command: npm run ocean-freight:dev:docker
+    ports:
+      - 4202:4200
+
+volumes:
+  mono-node-modules: null
