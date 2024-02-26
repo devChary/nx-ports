@@ -6,6 +6,7 @@ import {
   LinearScale,
   PointElement,
   ArcElement,
+  Tooltip,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
@@ -17,7 +18,8 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
-  ArcElement
+  ArcElement,
+  Tooltip
 );
 
 const EmptyWrapper = styled.div`
@@ -115,6 +117,9 @@ const LineChart: React.FC<Props> = ({
       title: {
         display: true,
         text: 'Chart.js Line Chart',
+      },
+      tooltip: {
+        display: true,
       },
     },
     scales: {
