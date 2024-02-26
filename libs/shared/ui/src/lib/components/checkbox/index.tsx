@@ -20,7 +20,7 @@ const CheckboxInput = styled.input`
   line-height: 0;
   margin: 0 0.6em 0 0;
   outline: 0;
-  padding: 0 !important;
+  padding: 0;
   vertical-align: text-top;
   height: 20px;
   width: 20px;
@@ -32,8 +32,8 @@ const CheckboxInput = styled.input`
   }
 
   &:checked {
-    background-color: #6fa7fb;
-    border: 2px solid #6fa7fb;
+    background-color: #000;
+    border: 2px solid #000;
     opacity: 1;
   }
 
