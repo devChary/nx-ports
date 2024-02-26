@@ -33,7 +33,7 @@ export const Dot = styled.div<DotProps>`
   }
 `;
 
-const animation = (delay: any) => keyframes`
+const animation = (delay: number) => keyframes`
   50% {
     transform: scale(1);
     opacity: 1;

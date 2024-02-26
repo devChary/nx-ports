@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-export interface EmptyStateProps {
-  data: any;
-  checked: boolean;
-  onChange: () => void;
-}
+import { MarketPostionProps } from '../market-position/market-position';
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,7 +48,15 @@ const CheckboxInput = styled.input`
   }
 `;
 
-function CheckBox(props: any) {
+interface CheckboxProps {
+  id: string;
+  key: string;
+  data: MarketPostionProps;
+  checked: boolean;
+  onChange: () => void;
+}
+
+function CheckBox(props: CheckboxProps) {
   const { data, checked, onChange } = props;
   const uniqueId = `cb-${data.value}`;
   return (

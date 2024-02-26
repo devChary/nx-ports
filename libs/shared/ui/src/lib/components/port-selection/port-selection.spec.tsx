@@ -1,17 +1,28 @@
 import { render } from '@testing-library/react';
+import PortSelection from './port-selection'; // Assuming the file name is Destinations.tsx
 
-import PortSelection from './port-selection';
-
-describe('PortSelection', () => {
+describe('Destinations Component', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <PortSelection
+        data={[
+          {
+            name: 'Port A',
+            code: 'A',
+          },
+          {
+            name: 'Port B',
+            code: 'B',
+          },
+        ]}
         setDestinationPort={() => {
-          console.log('destination Port set');
+          console.log('Destination Port set');
         }}
         setOriginPort={() => {
-          console.log('Orgin Port set');
+          console.log('Origin Port set');
         }}
+        originPort={null}
+        destinationPort={null}
       />
     );
     expect(baseElement).toBeTruthy();

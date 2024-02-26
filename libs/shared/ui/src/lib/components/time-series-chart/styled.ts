@@ -16,25 +16,3 @@ export const ChartData = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-export const HeaderWrapper = styled.div`
-  width: 100%;
-  padding-left: 48px;
-  border-bottom: 1px solid rgb(0, 0, 0, 0.5);
-  h2 {
-    text-transform: uppercase;
-    display: inline-block;
-    color: #000;
-    font-size: 1.25rem;
-    border-bottom: 3px solid var(--primary-color);
-  }
-`;
-
-export const InnerWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const EmptyStateWrap = styled.div`
-  padding: 50px 100px;
-`;

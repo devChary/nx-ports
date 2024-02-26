@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-this-alias */
 import React, { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
@@ -116,7 +118,7 @@ const LineChart: React.FC<Props> = ({
     plugins: {
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: 'Freight Market Data',
       },
       tooltip: {
         display: true,
@@ -129,8 +131,9 @@ const LineChart: React.FC<Props> = ({
         },
         ticks: {
           stepSize: 1,
-          callback: function (val: number, index: number): any {
-            return index % 4 === 0 ? this.getLabelForValue(val) : '';
+          callback: function (val: number, index: number): string {
+            const that: any = this;
+            return index % 4 === 0 ? that.getLabelForValue(val) : '';
           },
         },
       },

@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-function */ import React from 'react';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import SearchInput from './search-input';
 
@@ -50,5 +51,5 @@ describe('SearchInput component', () => {
     expect(handleChangeMock).toHaveBeenCalledTimes(1);
   });
 
-  // Add more test cases as needed
+  // Add more test cases for onClick and onKeyDown
 });

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import CheckBox from '../checkbox';
+import CheckBox from '../checkbox/checkbox';
 import { marketPositions } from '../../consts';
 
 const CheckBoxWrapper = styled.div`
@@ -37,8 +37,10 @@ const MarketPosition = ({ checkedCheckboxes, setCheckedCheckboxes }: any) => {
 
   return (
     <CheckBoxWrapper>
-      {marketPositions?.map((pos) => (
+      {marketPositions?.map((pos: MarketPostionProps, index: number) => (
         <CheckBox
+          id={`value_${index}`}
+          key={pos.value}
           data={pos}
           onChange={() => handleCheckboxChange(pos)}
           checked={checkedCheckboxes.some(
