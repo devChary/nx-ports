@@ -32,8 +32,8 @@ const CheckboxInput = styled.input`
   }
 
   &:checked {
-    background-color: #6fa7fb;
-    border: 2px solid #6fa7fb;
+    background-color: #000;
+    border: 2px solid #000;
     opacity: 1;
   }
 
