@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+/* assets */
 import EmptyStateIcon from '../../assets/empty_folder.png';
 
 const EmptyStateWrap = styled.div`
@@ -12,7 +13,7 @@ const EmptyStateWrap = styled.div`
   border: 1px solid #dbdbdb;
   border-radius: 2px;
   margin: 20px 0;
-  padding: 0 20px;
+  padding: 50px 100px;
   background: rgba(247, 247, 246, 0.5);
   img {
     width: 75px;

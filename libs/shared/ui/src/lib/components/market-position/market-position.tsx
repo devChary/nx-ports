@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+/* components | assets */
 import CheckBox from '../checkbox/checkbox';
 import { marketPositions } from '../../consts';
 

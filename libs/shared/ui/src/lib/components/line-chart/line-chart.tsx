@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-this-alias */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   Chart as ChartJS,
   LineElement,
@@ -13,6 +13,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
 
+/* components */
 import { EmptyState } from '../empty-state/empty-state';
 
 ChartJS.register(
@@ -23,10 +24,6 @@ ChartJS.register(
   ArcElement,
   Tooltip
 );
-
-const EmptyWrapper = styled.div`
-  padding: 50px 100px;
-`;
 
 const ChartWrapper = styled.div`
   width: 800px;
@@ -79,33 +76,37 @@ const LineChart: React.FC<Props> = ({
 }) => {
   const [chartData, setChartData] = useState<any>(null);
 
-  const curatedData = marketRates.map((d) => ({
-    date: d.day,
-    high: +d.high,
-    low: +d.low,
-    'mid-high': +((d.high || 0 + d.mean || 0) / 2),
-    'mid-low': +((d.low || 0 + d.mean || 0) / 2),
-    average: +d.mean,
-  }));
-
-  const generateChart = () => {
-    const labels = curatedData.map((rate, index) => {
-      const d = new Date(rate.date);
-      return `${d.getDate()} ${monthNames[d.getMonth()]}`;
-    });
-
-    const datasets = marketPostions?.map((pos) => ({
-      label: `${pos.label}`,
-      data: curatedData.map((r: any) => r[pos.value]),
-      fill: false,
-      borderColor: themeColor,
+  const curatedData = useMemo(() => {
+    return marketRates.map((d) => ({
+      date: d.day,
+      high: +d.high,
+      low: +d.low,
+      'mid-high': +((d.high || 0 + d.mean || 0) / 2),
+      'mid-low': +((d.low || 0 + d.mean || 0) / 2),
+      average: +d.mean,
     }));
+  }, [marketRates]);
 
-    setChartData({
-      labels: labels,
-      datasets,
-    });
-  };
+  const generateChart = useCallback(() => {
+    if (marketRates?.length > 0 && !noMarketRates && marketPostions) {
+      const labels = curatedData.map((rate, index) => {
+        const d = new Date(rate.date);
+        return `${d.getDate()} ${monthNames[d.getMonth()]}`;
+      });
+
+      const datasets = marketPostions?.map((pos) => ({
+        label: `${pos.label}`,
+        data: curatedData.map((r: any) => r[pos.value]),
+        fill: false,
+        borderColor: themeColor,
+      }));
+
+      setChartData({
+        labels: labels,
+        datasets,
+      });
+    }
+  }, [curatedData, themeColor, marketRates, noMarketRates, marketPostions]);
 
   const options = {
     responsive: true,
@@ -149,19 +150,15 @@ const LineChart: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    if (marketRates?.length > 0 && !noMarketRates && marketPostions) {
-      generateChart();
-    }
-  }, [marketRates, noMarketRates, marketPostions]);
+    generateChart();
+  }, [generateChart]);
 
   if (noMarketRates && portsSelected) {
     return (
-      <EmptyWrapper>
-        <EmptyState
-          title="No data found!"
-          subTitle="No market prices available for the selected ports. Please try again by selecting different ports."
-        />
-      </EmptyWrapper>
+      <EmptyState
+        title="No data found!"
+        subTitle="No market prices available for the selected ports. Please try again by selecting different ports."
+      />
     );
   }
 

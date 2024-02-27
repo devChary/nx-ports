@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ChartData = styled.div`
+export const FreightInterface = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;

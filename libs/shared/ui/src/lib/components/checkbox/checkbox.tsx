@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+/* interfaces */
 import { MarketPostionProps } from '../market-position/market-position';
 
 const Wrapper = styled.div`

@@ -10,8 +10,8 @@ import {
   Loader,
 } from '@nx-ports/shared-ui';
 
-/* Styles */
-import { Wrapper, ChartData } from './styled';
+/* styles */
+import { Wrapper, FreightInterface } from './styled';
 
 interface MarketPostionProps {
   value: string;
@@ -63,7 +63,7 @@ const TimeSeriesChart: React.FC<TimeSeriesProps> = (props) => {
 
   return (
     <Wrapper>
-      <ChartData>
+      <FreightInterface>
         <PortSelection
           data={freightCodes}
           originPort={originPort}
@@ -82,7 +82,7 @@ const TimeSeriesChart: React.FC<TimeSeriesProps> = (props) => {
             marketPostions={checkedCheckboxes}
           />
         )}
-      </ChartData>
+      </FreightInterface>
       {portsSelected && !noMarketRates && !isLoading && (
         <MarketPosition
           checkedCheckboxes={checkedCheckboxes}

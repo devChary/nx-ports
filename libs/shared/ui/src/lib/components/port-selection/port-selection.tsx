@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
-/* Components */
+/* components */
 import SearchInput from '../search-input/search-input';
 
-/* utils | assets */
-// import { useQuery } from 'utils';
-
+/* assets */
 import Arrow from '../../assets/arrow-symbol.png';
 
-/* Styles */
+/* styles */
 import { PortSelectionWrapper, ArrowImg } from './styled';
 
 interface Port {

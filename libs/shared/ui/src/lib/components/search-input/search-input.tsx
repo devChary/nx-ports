@@ -6,10 +6,10 @@ import React, {
   KeyboardEvent,
 } from 'react';
 
-/* Hooks */
+/* hooks */
 import { useOutsideClick } from '../../hooks';
 
-/* Styles */
+/* styles */
 import {
   PortName,
   DropDownOptions,
